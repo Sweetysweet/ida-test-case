@@ -4,16 +4,28 @@
     <main class="page__content">
       <Nuxt />
     </main>
+    <Cart class="page__cart"/>
+    <transition name="overlay">
+      <Overlay class="page__overlay" v-if="overlay" />
+    </transition>
   </div>
 </template>
 <script>
 import Header from "./header/header";
-import { mapMutations } from 'vuex'
+import Cart from "@/components/cart/cart"
+import Overlay from '@/components/Overlay'
+import { mapMutations, mapGetters } from 'vuex'
 export default {
   components: {
     Header,
+    Cart,
+    Overlay
   },
-
+  computed: {
+    ...mapGetters({
+      overlay: "GET_OVERLAY"
+    })
+  },
   methods: {
     ...mapMutations({
       cart: 'cart/SET_CART'
@@ -35,6 +47,7 @@ export default {
 };
 </script>
 <style lang="sass">
+@import './animate'
 html
   font-family: "Arial", sans-serif
   font-size: 16px
@@ -68,4 +81,17 @@ html
   &__header
     background-color: #fff
     box-shadow: 0px 4px 16px rgba(#000, 0.05)
+    width: 100%
+    height: 66px
+    display: flex
+    position: fixed
+    z-index: 2
+  &__cart
+    @include fixed($top: 0, $right: 0)
+    height: 100vh
+    width: 100%
+    max-width: 460px
+    background: #fff
+    border: 1px solid #ccc
+    z-index: 4
 </style>
