@@ -1,0 +1,46 @@
+@mixin max
+  @media screen and (min-width: 1921px )
+    @content
+    
+@mixin largelaptop
+  @media screen and (max-width: 1920px)
+    @content
+    
+@mixin laptop
+  @media screen and (max-width: 1540px)
+    @content
+
+@mixin mediumlaptop
+  @media screen and (max-width: 1366px)
+    @content
+
+@mixin tablets
+  @media screen and (max-width: 768px)
+    @content
+
+@mixin phones
+  @media screen and (max-width: 480px)
+    @content
+
+@mixin position($position, $top: null, $right: null, $bottom: null, $left: null)
+  position: $position
+  top: $top
+  right: $right
+  bottom: $bottom
+  left: $left
+
+
+@mixin absolute($args...) 
+  @include position(absolute, $args...)
+
+
+@mixin relative($args...) 
+  @include position(relative, $args...)
+
+
+@mixin fixed($args...) 
+  @include position(fixed, $args...)
+
+
+@mixin sticky($args...) 
+  @include position(sticky, $args...)
