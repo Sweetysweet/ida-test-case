@@ -1,3 +1,3 @@
 export default {
-    GET_CATEGORIES: ({categories}) => categories
+    GET_CATEGORIES: ({ categories }) => categories
 }

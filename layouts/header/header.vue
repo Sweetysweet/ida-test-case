@@ -4,7 +4,7 @@
       <div class="header__logo">TestList</div>
       <div class="header__cart">
         <CartIcon class="header__cart-img" />
-        <span class="header__cart-count">3</span>
+        <span class="header__cart-count">{{cart.length}}</span>
       </div>
     </div>
   </header>
@@ -12,10 +12,17 @@
 
 <script>
 import CartIcon from "@/assets/images/icons/cart.svg";
+
+import { mapGetters } from 'vuex'
 export default {
   components: {
     CartIcon,
   },
+  computed: {
+    ...mapGetters({
+      cart: "cart/GET_PRODUCTS_FROM_CART"
+    })
+  }
 };
 </script>
 

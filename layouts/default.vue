@@ -8,10 +8,30 @@
 </template>
 <script>
 import Header from "./header/header";
+import { mapMutations } from 'vuex'
 export default {
   components: {
     Header,
   },
+
+  methods: {
+    ...mapMutations({
+      cart: 'cart/SET_CART'
+    }),
+
+    initData() {
+      const localCart = localStorage.getItem('cart')
+      let cart
+      if (localCart) {
+        cart = JSON.parse(localCart)
+        this.cart(cart)
+      }
+    }
+  },
+
+  mounted() {
+    this.initData()
+  }
 };
 </script>
 <style lang="sass">
