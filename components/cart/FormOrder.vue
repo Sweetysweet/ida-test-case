@@ -1,37 +1,111 @@
 <template>
-    <div class="cart-form">
+    <form class="cart-form" @submit.prevent="submitHandler">
         <div class="cart-form__title">Оформить заказ</div>
         <div class="cart-form__contact">
             <input 
                 type="text" 
                 class="cart-form__name"
                 placeholder="Ваше имя"
-                v-model="name"
+                v-model="userName"
+                ref="name"
             >
             <input 
                 type="phone" 
                 class="cart-form__phone"
                 placeholder="Телефон"
-                v-model="phone"
+                v-model="userPhone"
+                ref="phone"
+                v-maska="['+# ### ### ## ##', '+### ### ## ## ##']"
             >
+            <div class="error" v-if="!$v.user.phone.required && $v.user.phone.$dirty">
+                <span> Введите номер телефона </span>
+            </div>
             <input 
                 type="text" 
                 class="cart-form__address"
                 placeholder="Адрес"
-                v-model="address"
+                v-model="userAddress"
+                ref="address"
             >
         </div>
         <div class="cart-form__submit">
-            <CartBtn @click.native="submitHandler" class="cart-form__btn">
+            <CartBtn type="submit" class="cart-form__btn">
                 Отправить
             </CartBtn>
         </div>
-    </div>
+    </form>
 </template>
 
 <script>
+import {mapActions} from 'vuex'
+import { required } from 'vuelidate/lib/validators'
+import { maska } from 'maska'
+import cartBtn from '@/components/cart/CartBtn'
 export default {
-    
+    components: {
+        cartBtn
+    },
+
+    data: () => ({
+        user: {
+            name: '',
+            phone: '',
+            address: ''
+        }
+    }),
+
+    validations: {
+        user: {
+            phone: {required}
+        }
+    },
+
+    directives: { maska },
+
+    computed: {
+        userName: {
+            get() {
+                return this.user.name
+            },
+            set(name) {
+                name = name.replace(/\d/g, '')
+                this.$refs.name.value = name
+                this.user.name = name.trim()
+            }
+        },
+        userPhone: {
+            get() {
+                return this.user.phone
+            },
+            set(phone) {
+                this.$refs.phone.value = phone
+                this.user.phone = phone
+            }
+        },
+        userAddress: {
+            get() {
+                return this.user.address
+            },
+            set(address) {
+                this.$refs.address.value = address
+                this.user.address = address.trim()
+            }
+        }
+    },
+
+    methods: {
+        ...mapActions({
+            sendUserData: 'cart/sendUser'
+        }),
+        submitHandler() {
+            const userData = {
+                username: this.name,
+                userPhone: this.phone,
+                userAddress: this.address
+            }
+            this.sendUserData(userData)
+        }
+    }
 }
 </script>
 

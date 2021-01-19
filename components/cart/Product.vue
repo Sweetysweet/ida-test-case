@@ -25,6 +25,8 @@
 import Trash from "@/assets/images/icons/trash.svg";
 import Star from '@/assets/images/icons/star.svg'
 import imgPath from "@/components/mixins/imgPath";
+
+import {mapMutations} from 'vuex'
 export default {
   components: {
     Trash,
@@ -32,8 +34,17 @@ export default {
   },
   props: {
     product: {
-        type: Object
+      type: Object
     }
+  },
+  methods: {
+    ...mapMutations({
+      remove: 'cart/REMOVE_PRODUCT'
+    }),
+  deleteProuctHandler(item) {
+    this.remove(item)
+  }
+
   },
   mixins: [imgPath]
 };
