@@ -22,5 +22,9 @@ export default {
         const currentProduct = state.cart.findIndex(p => p.id === product.id)
         state.cart.splice(currentProduct, 1)
         window.localStorage.setItem("cart", JSON.stringify(state.cart))
+    },
+
+    SET_ORDER(state, payload) {
+        state.orders = payload
     }
 }

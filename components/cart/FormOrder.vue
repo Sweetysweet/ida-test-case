@@ -9,6 +9,9 @@
                 v-model="userName"
                 ref="name"
             >
+            <div class="cart-form__error" v-if="!$v.user.name.required && $v.user.name.$dirty">
+                <span> Введите имя </span>
+            </div>
             <input 
                 type="phone" 
                 class="cart-form__phone"
@@ -17,7 +20,7 @@
                 ref="phone"
                 v-maska="['+# ### ### ## ##', '+### ### ## ## ##']"
             >
-            <div class="error" v-if="!$v.user.phone.required && $v.user.phone.$dirty">
+            <div class="cart-form__error" v-if="!$v.user.phone.required && $v.user.phone.$dirty">
                 <span> Введите номер телефона </span>
             </div>
             <input 
@@ -27,6 +30,9 @@
                 v-model="userAddress"
                 ref="address"
             >
+            <div class="cart-form__error" v-if="!$v.user.address.required && $v.user.address.$dirty">
+                <span> Введите адрес </span>
+            </div>
         </div>
         <div class="cart-form__submit">
             <CartBtn type="submit" class="cart-form__btn">
@@ -40,10 +46,10 @@
 import {mapActions, mapGetters} from 'vuex'
 import { required } from 'vuelidate/lib/validators'
 import { maska } from 'maska'
-import СartBtn from '@/components/cart/CartBtn'
+import CartBtn from '@/components/cart/CartBtn'
 export default {
     components: {
-        СartBtn
+        CartBtn
     },
 
     data: () => ({
@@ -54,21 +60,20 @@ export default {
         }
     }),
 
-    computed: {
-        ...mapGetters({
-            cartProducts: "cart/GET_PRODUCTS_FROM_CART"
-        })
-    },
-
     validations: {
         user: {
-            phone: {required}
+            name: {required},
+            phone: {required},
+            address: {required}
         }
     },
 
     directives: { maska },
 
     computed: {
+         ...mapGetters({
+            cartProducts: "cart/GET_PRODUCTS_FROM_CART"
+        }),
         userName: {
             get() {
                 return this.user.name
@@ -101,16 +106,27 @@ export default {
 
     methods: {
         ...mapActions({
-            sendUserData: 'cart/sendUserData'
+            sendUserData: 'cart/sendUserData',
+            clearCart: 'cart/clearCart'
         }),
         submitHandler() {
+            if (this.$v.user.$invalid) {
+                this.$v.$touch()
+                return
+            }
             const userData = {
-                username: this.name,
-                userPhone: this.phone,
-                userAddress: this.address,
+                username: this.userName,
+                userPhone: this.userPhone,
+                userAddress: this.userAddress,
                 products: this.cartProducts
             }
             this.sendUserData(userData)
+
+            this.user.name = '',
+            this.user.phone = '',
+            this.user.address = '',
+
+            this.clearCart()
         }
     }
 }
@@ -134,5 +150,7 @@ export default {
         padding: 14px
         display: block
         width: 100%
+    &__error
+        color: $red
 
 </style>

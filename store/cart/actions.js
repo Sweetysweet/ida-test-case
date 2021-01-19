@@ -1,5 +1,8 @@
 export default {
-    sendUserData( { commit }, client) {
-        console.log(client)
+    sendUserData({ commit }, client) {
+        commit('SET_ORDER', client)
+    },
+    clearCart({ commit }) {
+        commit('CLEAR_CART')
     }
 }

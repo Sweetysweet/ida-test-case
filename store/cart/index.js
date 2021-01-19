@@ -6,6 +6,7 @@ export default {
     state: () => ({
       cart: [],
       sumProduct: '',
+      orders: []
     }),
     
     mutations,

@@ -47,6 +47,8 @@ export default {
 .cart
     position: relative
     padding: 52px 48px
+    height: 200px
+    overflow-y: scroll
     &__close
         @include absolute ($top: 52px, $right: 48px)
     &__subtitle
@@ -60,5 +62,18 @@ export default {
         display: block
         margin-top: 24px
         width: 325px
+    &::-webkit-scrollbar 
+        -webkit-appearance: none !important
+    &::-webkit-scrollbar
+        width: 4px !important
+        background-color: #F5F5F5
+        &-track
+        -webkit-box-shadow: inset 0 0 6px rgba($grey, 0.3)
+        border-radius: 10px
+        background-color: #F5F5F5
+        &-thumb
+        border-radius: 10px
+        -webkit-box-shadow: inset 0 0 6px rgba($grey, .3)
+        background-color: #555
 
 </style>

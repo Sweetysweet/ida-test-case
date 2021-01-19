@@ -1,7 +1,9 @@
 <template>
   <header class="header">
     <div class="header__inner container">
-      <div class="header__logo">TestList</div>
+      <NuxtLink to="/" class="header__logo">
+        <LogoIcon />
+      </NuxtLink>
       <button class="header__cart" @click="openCart">
         <CartIcon class="header__cart-img"/>
         <span class="header__cart-count">{{cart.length}}</span>
@@ -11,12 +13,14 @@
 </template>
 
 <script>
-import CartIcon from "@/assets/images/icons/cart.svg";
+import CartIcon from "@/assets/images/icons/cart.svg"
+import LogoIcon from '@/assets/images/icons/logo.svg'
 
 import { mapGetters } from 'vuex'
 export default {
   components: {
     CartIcon,
+    LogoIcon
   },
   computed: {
     ...mapGetters({
@@ -44,6 +48,7 @@ export default {
     color: #59606D
     font-size: 22px
     font-weight: 700
+    text-decoration: none
   &__cart
     position: relative
     z-index: 2
