@@ -68,12 +68,12 @@ export default {
         width: 4px !important
         background-color: #F5F5F5
         &-track
-        -webkit-box-shadow: inset 0 0 6px rgba($grey, 0.3)
-        border-radius: 10px
-        background-color: #F5F5F5
+            -webkit-box-shadow: inset 0 0 6px rgba($grey, 0.3)
+            border-radius: 10px
+            background-color: #F5F5F5
         &-thumb
-        border-radius: 10px
-        -webkit-box-shadow: inset 0 0 6px rgba($grey, .3)
-        background-color: #555
+            border-radius: 10px
+            -webkit-box-shadow: inset 0 0 6px rgba($grey, .3)
+            background-color: #555
 
 </style>
