@@ -37,13 +37,13 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
 import { required } from 'vuelidate/lib/validators'
 import { maska } from 'maska'
-import cartBtn from '@/components/cart/CartBtn'
+import СartBtn from '@/components/cart/CartBtn'
 export default {
     components: {
-        cartBtn
+        СartBtn
     },
 
     data: () => ({
@@ -53,6 +53,12 @@ export default {
             address: ''
         }
     }),
+
+    computed: {
+        ...mapGetters({
+            cartProducts: "cart/GET_PRODUCTS_FROM_CART"
+        })
+    },
 
     validations: {
         user: {
@@ -95,13 +101,14 @@ export default {
 
     methods: {
         ...mapActions({
-            sendUserData: 'cart/sendUser'
+            sendUserData: 'cart/sendUserData'
         }),
         submitHandler() {
             const userData = {
                 username: this.name,
                 userPhone: this.phone,
-                userAddress: this.address
+                userAddress: this.address,
+                products: this.cartProducts
             }
             this.sendUserData(userData)
         }

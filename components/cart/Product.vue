@@ -14,7 +14,7 @@
           <div class="cart-product__stars-rating">{{product.rating}}</div>
         </div>
       </div>
-      <button class="cart-product__trash" @click="deleteProuctHandler">
+      <button class="cart-product__trash" @click="deleteProuctHandler(product)">
         <Trash />
       </button>
     </div>
@@ -41,8 +41,8 @@ export default {
     ...mapMutations({
       remove: 'cart/REMOVE_PRODUCT'
     }),
-  deleteProuctHandler(item) {
-    this.remove(item)
+  deleteProuctHandler($event) {
+    this.remove(this.product)
   }
 
   },

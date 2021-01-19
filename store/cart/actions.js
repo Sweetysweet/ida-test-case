@@ -1,5 +1,5 @@
 export default {
-    sendUserData(client) {
+    sendUserData( { commit }, client) {
         console.log(client)
     }
 }

@@ -19,7 +19,6 @@ export default {
     },
 
     REMOVE_PRODUCT(state, product) {
-        console.log('ssdsd',product);
         const currentProduct = state.cart.findIndex(p => p.id === product.id)
         state.cart.splice(currentProduct, 1)
         window.localStorage.setItem("cart", JSON.stringify(state.cart))
