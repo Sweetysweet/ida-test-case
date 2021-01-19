@@ -2,8 +2,8 @@
   <header class="header">
     <div class="header__inner container">
       <div class="header__logo">TestList</div>
-      <button class="header__cart">
-        <CartIcon class="header__cart-img" />
+      <button class="header__cart" @click="openCart">
+        <CartIcon class="header__cart-img"/>
         <span class="header__cart-count">{{cart.length}}</span>
       </button>
     </div>
@@ -22,6 +22,12 @@ export default {
     ...mapGetters({
       cart: "cart/GET_PRODUCTS_FROM_CART"
     })
+  },
+
+  methods: {
+    openCart() {
+      this.$root.$emit('cart:open')
+    }
   }
 };
 </script>

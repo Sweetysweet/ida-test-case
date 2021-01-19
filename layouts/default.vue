@@ -1,13 +1,19 @@
 <template>
   <div class="page__wrapper">
     <Header class="page__header" />
+
     <main class="page__content">
       <Nuxt />
     </main>
-    <Cart class="page__cart"/>
+
+    <transition v-if="open">
+      <Cart class="page__cart"/>
+    </transition>
+
     <transition name="overlay">
       <Overlay class="page__overlay" v-if="overlay" />
     </transition>
+
   </div>
 </template>
 <script>
@@ -21,14 +27,29 @@ export default {
     Cart,
     Overlay
   },
+  data: () => ({
+    open: false
+  }),
   computed: {
     ...mapGetters({
       overlay: "GET_OVERLAY"
     })
   },
+  created() {
+    this.$root.$on("cart:open", () => {
+      this.open = true
+      this.setOverlay(true)
+    }),
+
+    this.$root.$on("cart:close", () => {
+      this.open = false
+      this.setOverlay(false)
+    })
+  },
   methods: {
     ...mapMutations({
-      cart: 'cart/SET_CART'
+      cart: 'cart/SET_CART',
+      setOverlay: 'SET_OVERLAY'
     }),
 
     initData() {
@@ -38,7 +59,7 @@ export default {
         cart = JSON.parse(localCart)
         this.cart(cart)
       }
-    }
+    },
   },
 
   mounted() {

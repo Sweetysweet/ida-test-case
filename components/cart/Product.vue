@@ -8,13 +8,13 @@
       </div>
       <div class="cart-product__body">
         <span class="cart-product__title">{{product.name}}</span>
-        <span class="cart-product__price">{{product.price}}</span>
+        <span class="cart-product__price">{{product.price}} ₽</span>
         <div class="cart-product__stars">
           <Star class="cart-product__stars-img" />
           <div class="cart-product__stars-rating">{{product.rating}}</div>
         </div>
       </div>
-      <button class="cart-product__trash">
+      <button class="cart-product__trash" @click="deleteProuctHandler">
         <Trash />
       </button>
     </div>
@@ -45,6 +45,9 @@ export default {
         display: flex
         position: relative
         padding: 15px 25px
+        box-shadow: 0px 4px 16px rgba(#000, 0.05)
+        border-radius: 8px
+        background-color: #fff
     &__image-handler
         width: 70px
         margin: 0 auto
@@ -59,5 +62,25 @@ export default {
     &__body
         flex-grow: 1
         max-width: 170px
+    &__title
+      margin: 16px 0 6px
+      color: $grey
+      font-size: 14px
+    &__price
+      display: block
+      margin-top: 6px
+      font:
+          size: 14px
+          weight: 700
+    &__stars
+      display: flex
+      margin-top: 16px
+      &-img
+        width: 13px
+        height: 13px
+        fill: $yellow
+      &-rating
+        color: $yellow
+        font-size: 10px
 
 </style>

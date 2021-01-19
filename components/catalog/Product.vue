@@ -16,7 +16,7 @@
         </div>
       </div>
       <div class="product__title">{{ product.name }}</div>
-      <div class="product__price">{{ product.price }}₽</div>
+      <div class="product__price">{{ product.price }} ₽</div>
     </div>
   </li>
 </template>
