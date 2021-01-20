@@ -14,7 +14,10 @@
           <div class="cart-product__stars-rating">{{product.rating}}</div>
         </div>
       </div>
-      <button class="cart-product__trash" @click="deleteProuctHandler(product)">
+      <button 
+        class="cart-product__trash" 
+        @click="deleteProuctHandler(product)" 
+      >
         <Trash />
       </button>
     </div>
@@ -28,6 +31,7 @@ import imgPath from "@/components/mixins/imgPath";
 
 import {mapMutations} from 'vuex'
 export default {
+  name: 'CartProduct',
   components: {
     Trash,
     Star,

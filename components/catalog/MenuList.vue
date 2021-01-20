@@ -17,6 +17,7 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
+  name: 'MenuList',
   computed: {
     ...mapGetters({
       categories: "category/GET_CATEGORIES",

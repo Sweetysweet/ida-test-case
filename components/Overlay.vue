@@ -1,7 +1,11 @@
 <template>
     <div class="overlay"></div>
 </template>
-
+<script>
+export default {
+    name: 'Overlay'
+}
+</script>
 <style lang="sass">
 .overlay
     @include fixed($top:0, $left: 0)

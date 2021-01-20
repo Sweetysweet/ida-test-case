@@ -18,6 +18,7 @@ import LogoIcon from '@/assets/images/icons/logo.svg'
 
 import { mapGetters } from 'vuex'
 export default {
+  name: 'Header',
   components: {
     CartIcon,
     LogoIcon

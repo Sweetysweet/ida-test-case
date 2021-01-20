@@ -4,7 +4,6 @@
       <h1 class="h1">Каталог</h1>
       <NuxtChild />
     </div>
-  
   </section>
 </template>
 

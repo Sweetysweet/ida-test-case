@@ -7,7 +7,7 @@
         </div>
         <div class="product__stars-rating">{{ product.rating }}</div>
       </div>
-      <button class="product__buy" @click="addToCart">
+      <button class="product__buy" @click="addToCart" v-if="!isInCart(product)" >
         <CartIcon class="product__buy-img" />
       </button>
       <div class="product__image-handler">
@@ -22,12 +22,14 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 import StarIcon from "@/assets/images/icons/star.svg";
 import CartIcon from "@/assets/images/icons/cart.svg";
 
 import imgPath from "@/components/mixins/imgPath";
 import addToCart from "@/components/mixins/addToCart"
 export default {
+  name: 'Product',
   components: {
     StarIcon,
     CartIcon,
@@ -37,6 +39,11 @@ export default {
       type: Object,
       required: true,
     },
+  },
+  computed: {
+    ...mapGetters({
+      isInCart: "cart/IS_IN_CART"
+    })
   },
   mixins: [imgPath, addToCart],
 };

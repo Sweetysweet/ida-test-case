@@ -7,8 +7,9 @@
 <script>
 import MenuList from '@/components/catalog/MenuList'
 export default {
+    name: 'Menu',
     components: {
-        MenuList
+      MenuList
     }
 }
 </script>

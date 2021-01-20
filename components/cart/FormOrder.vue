@@ -48,6 +48,7 @@ import { required } from 'vuelidate/lib/validators'
 import { maska } from 'maska'
 import CartBtn from '@/components/cart/CartBtn'
 export default {
+    name: 'FormOrder',
     components: {
         CartBtn
     },
@@ -127,6 +128,8 @@ export default {
             this.user.address = '',
 
             this.clearCart()
+
+            this.$emit('nextstep')
         }
     }
 }

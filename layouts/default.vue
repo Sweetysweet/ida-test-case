@@ -6,22 +6,23 @@
       <Nuxt />
     </main>
 
-    <transition v-if="open">
-      <Cart class="page__cart"/>
+    <transition name="transform">
+      <Cart class="page__cart" v-if="open"/>
     </transition>
 
     <transition name="overlay">
-      <Overlay class="page__overlay" v-if="overlay" />
+      <Overlay class="page__overlay" v-if="overlay"  @click.native="clickHandler"/>
     </transition>
 
   </div>
 </template>
 <script>
 import Header from "./header/header";
-import Cart from "@/components/cart/cart"
+import Cart from "@/components/cart/Сart"
 import Overlay from '@/components/Overlay'
 import { mapMutations, mapGetters } from 'vuex'
 export default {
+  name: 'App',
   components: {
     Header,
     Cart,
@@ -53,12 +54,16 @@ export default {
     }),
 
     initData() {
-      const localCart = localStorage.getItem('cart')
+      const localCart = window.localStorage.getItem('cart')
       let cart
       if (localCart) {
         cart = JSON.parse(localCart)
         this.cart(cart)
       }
+    },
+
+    clickHandler() {
+      this.$root.$emit('mainclose')
     },
   },
 
