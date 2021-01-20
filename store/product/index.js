@@ -4,7 +4,8 @@ import getters from './getters'
 export default {
     namespaced: true,
     state: () => ({
-        products: []
+        products: [],
+        sortMethod: 'price'
     }),
     mutations,
     actions,

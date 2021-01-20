@@ -1,18 +1,22 @@
 <template>
   <div class="catalog">
     <Menu class="catalog__menu" />
-    <ProductsList class="catalog__products" />
+    <div>
+      <DropdownSort class="catalog__dropdowns" />
+      <ProductsList class="catalog__products" />
+    </div>
   </div>
 </template>
 
 <script>
 import Menu from "@/components/catalog/Menu";
 import ProductsList from "@/components/catalog/ProductsList";
-
+import DropdownSort from "@/components/catalog/DropdownSort";
 export default {
   components: {
     Menu,
     ProductsList,
+    DropdownSort,
   },
 };
 </script>
