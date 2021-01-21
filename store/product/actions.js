@@ -8,5 +8,9 @@ export default {
 
         if (data.length) return true
         else return false
+    },
+
+    getSortResponse({commit}, method) {
+        commit('SET_SORT_METHOD', method)
     }
 }

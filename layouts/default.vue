@@ -75,7 +75,6 @@ export default {
 <style lang="sass">
 @import './animate'
 html
-  font-family: "Arial", sans-serif
   font-size: 16px
   word-spacing: 1px
   -ms-text-size-adjust: 100%

@@ -2,7 +2,7 @@
   <div class="products">
     <ul class="products__list">
       <Product
-        v-for="product in products"
+        v-for="product in sortedProducts"
         :key="product.id"
         :product="product"
         class="products__item"
@@ -22,6 +22,7 @@ export default {
   computed: {
     ...mapGetters({
       products: "product/GET_PRODUCTS",
+      sortedProducts: "product/GET_SORTED_PRODUCTS"
     }),
   },
 };
