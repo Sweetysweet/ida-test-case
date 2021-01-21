@@ -1,7 +1,10 @@
 <template>
   <div class="catalog-dropdowns__wrapper">
     <div class="catalog-dropdowns__select">
-      <button class="catalog-dropdowns__button" @click="dropdown = !dropdown">Сортировать по: {{ sort.text }}</button>
+      <button class="catalog-dropdowns__button" @click="dropdown = !dropdown">
+        <span class="catalog-dropdowns__button_title">Сортировать по:</span>
+        <span class="catalog-dropdowns__title">{{ sort.text }}</span>
+      </button>
       <ul class="catalog-dropdowns__list" v-if="dropdown">
         <li class="catalog-dropdowns__item" :class="{'active': method.value === sort.value}" v-for="method in sortMethods" :key="method.id">
           <a class="catalog-dropdowns__link" @click="changeSortMethod(method.value)">
@@ -43,11 +46,13 @@ export default {
 .catalog-dropdowns
   &__select
     position: relative
+  &__title
+    color: $grey
   &__list
     position: absolute
+    padding: 8px 0px
     top: 35px
     width: 100%
-    height: 68px
     overflow: hidden
     background-color: #fff
     box-shadow: 0px 4px 16px rgba(#000, 0.05)
@@ -60,6 +65,8 @@ export default {
     padding: 2px 12px
     transition: color 0.3s ease-in-out
     transition: background-color 0.3s ease-in-out
+    span
+      font-size: 14px
     &.active, &:hover
       background-color: $grey-extra-light
       span
@@ -88,8 +95,9 @@ export default {
       top: 50%
       right: -12px
       content: ''
+      transform: translateY(-50%)
       border-style: solid
-      border-width: 6px 5px 0 5px
+      border-width: 4px 4px 0 4px
       border-color: $grey transparent transparent transparent
       
 </style>
