@@ -45,11 +45,6 @@ export default {
     justify-content: space-between
     width: 100%
     align-items: center
-  &__logo
-    color: #59606D
-    font-size: 22px
-    font-weight: 700
-    text-decoration: none
   &__cart
     position: relative
     z-index: 2
