@@ -44,6 +44,12 @@ export default {
 </script>
 <style lang="sass">
 .catalog-dropdowns
+  &__wrapper
+    position: relative
+    display: flex
+    justify-content: flex-end
+    margin: 0 10px 34px 0
+    margin-right: 10px
   &__select
     position: relative
   &__title
@@ -79,13 +85,6 @@ export default {
   &__text
     display: block
     width: 100%
-
-  &__wrapper
-    position: relative
-    display: flex
-    justify-content: flex-end
-    margin: 0 10px 34px 0
-    margin-right: 10px
   &__button
     cursor: pointer
     position: relative

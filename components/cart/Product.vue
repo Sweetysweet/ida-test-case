@@ -41,11 +41,13 @@ export default {
       type: Object
     }
   },
+
   methods: {
     ...mapMutations({
       remove: 'cart/REMOVE_PRODUCT'
     }),
-  deleteProuctHandler($event) {
+
+  deleteProuctHandler() {
     this.remove(this.product)
   }
 
@@ -57,26 +59,26 @@ export default {
 <style lang="sass">
 .cart-product
     &__wrapper
-        display: flex
-        position: relative
-        padding: 15px 25px
-        box-shadow: 0px 4px 16px rgba(#000, 0.05)
-        border-radius: 8px
-        background-color: #fff
+      display: flex
+      position: relative
+      padding: 15px 25px
+      box-shadow: 0px 4px 16px rgba(#000, 0.05)
+      border-radius: 8px
+      background-color: #fff
     &__image-handler
-        width: 70px
-        margin: 0 auto
+      width: 70px
+      margin: 0 auto
     &__image-wrap
-        width: 100%
-        padding-bottom: 126.7%
-        position: relative
+      width: 100%
+      padding-bottom: 126.7%
+      position: relative
     &__image
-        @include absolute($top: 0, $left: 0)
-        width: 100%
-        height: 100%
+      @include absolute($top: 0, $left: 0)
+      width: 100%
+      height: 100%
     &__body
-        flex-grow: 1
-        max-width: 170px
+      flex-grow: 1
+      max-width: 170px
     &__title
       margin: 16px 0 6px
       color: $grey
@@ -85,8 +87,8 @@ export default {
       display: block
       margin-top: 6px
       font:
-          size: 14px
-          weight: 700
+        size: 14px
+        weight: 700
     &__stars
       display: flex
       margin-top: 16px
