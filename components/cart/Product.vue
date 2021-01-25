@@ -8,7 +8,7 @@
       </div>
       <div class="cart-product__body">
         <span class="cart-product__title">{{product.name}}</span>
-        <span class="cart-product__price">{{product.price}} ₽</span>
+        <span class="cart-product__price">{{priceFormat(product.price)}} ₽</span>
         <div class="cart-product__stars">
           <Star class="cart-product__stars-img" />
           <div class="cart-product__stars-rating">{{product.rating}}</div>
@@ -47,9 +47,13 @@ export default {
       remove: 'cart/REMOVE_PRODUCT'
     }),
 
-  deleteProuctHandler() {
-    this.remove(this.product)
-  }
+    deleteProuctHandler() {
+      this.remove(this.product)
+    },
+    
+    priceFormat(price) {
+      return price.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')
+    },
 
   },
   mixins: [imgPath]

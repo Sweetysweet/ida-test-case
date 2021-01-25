@@ -52,13 +52,14 @@ export default {
     margin-right: 10px
   &__select
     position: relative
+    right: 10px
   &__title
     color: $grey
   &__list
     position: absolute
     padding: 8px 0px
     top: 35px
-    width: 100%
+    width: 108%
     overflow: hidden
     background-color: #fff
     box-shadow: 0px 4px 16px rgba(#000, 0.05)

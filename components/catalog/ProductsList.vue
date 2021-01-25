@@ -19,6 +19,9 @@ export default {
   components: {
     Product,
   },
+  created() {
+    console.log(this.products.forEach(p => console.log(p.rating)))
+  },
   computed: {
     ...mapGetters({
       products: "product/GET_PRODUCTS",

@@ -16,7 +16,7 @@
         </div>
       </div>
       <div class="product__title">{{ product.name }}</div>
-      <div class="product__price">{{ product.price }} ₽</div>
+      <div class="product__price">{{ priceFormat(product.price) }} ₽</div>
     </div>
   </li>
 </template>
@@ -43,7 +43,12 @@ export default {
   computed: {
     ...mapGetters({
       isInCart: "cart/IS_IN_CART"
-    })
+    }),
+  },
+  methods: {
+    priceFormat(price) {
+      return price.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')
+    },
   },
   mixins: [imgPath, addToCart],
 };
@@ -74,6 +79,9 @@ export default {
             width: 12px
             height: 12px
             fill: $grey-light
+            transition: fill .3s ease-in-out
+            &:hover
+              fill: $grey
     &__image-handler
         width: 142px
         margin: 0 auto

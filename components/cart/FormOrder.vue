@@ -20,7 +20,7 @@
                 ref="phone"
                 v-maska="['+# ### ### ## ##', '+### ### ## ## ##']"
             >
-            <div class="cart-form__error" v-if="!$v.user.phone.required && $v.user.phone.$dirty">
+            <div class="cart-form__error" v-if="!$v.user.phone.required && !$v.user.phone.validatePhone && $v.user.phone.$dirty">
                 <span> Введите номер телефона </span>
             </div>
             <input 
@@ -47,6 +47,7 @@ import {mapActions, mapGetters} from 'vuex'
 import { required } from 'vuelidate/lib/validators'
 import { maska } from 'maska'
 import CartBtn from '@/components/cart/CartBtn'
+// const validatePhone = phone => phone.match(/\+7\(\d{3}\)\d{3}-\d{2}-\d{2}/)
 export default {
     name: 'FormOrder',
     components: {
@@ -64,7 +65,7 @@ export default {
     validations: {
         user: {
             name: {required},
-            phone: {required},
+            phone: {required, validatePhone: val => val.match(/\+7\(\d{3}\)\d{3}-\d{2}-\d{2}/)},
             address: {required}
         }
     },

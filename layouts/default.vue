@@ -38,13 +38,17 @@ export default {
   },
   created() {
     this.$root.$on("cart:open", () => {
+      let body = document.body
       this.open = true
       this.setOverlay(true)
+      body.classList.toggle('hidden')
     }),
 
     this.$root.$on("cart:close", () => {
+      let body = document.body
       this.open = false
       this.setOverlay(false)
+      body.classList.toggle('hidden')
     })
   },
   methods: {
@@ -88,7 +92,9 @@ html
 *:after
   box-sizing: border-box
   margin: 0
-
+body
+  &.hidden
+    overflow: hidden
 .container
   margin: 0 auto
   width: 100%
@@ -117,6 +123,7 @@ html
     width: 100%
     max-width: 460px
     background: #fff
-    border: 1px solid #ccc
     z-index: 4
+    box-shadow: -4px 0px 16px rgba(#000, 0.05)
+    border-radius: 8px 0px 0px 8px
 </style>
