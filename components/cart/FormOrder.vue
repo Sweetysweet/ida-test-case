@@ -9,20 +9,20 @@
                 v-model="userName"
                 ref="name"
             >
-            <div class="cart-form__error" v-if="!$v.user.name.required && $v.user.name.$dirty">
+            <!-- <div class="cart-form__error" v-if="!$v.user.name.required && $v.user.name.$dirty">
                 <span> Введите имя </span>
-            </div>
+            </div> -->
             <input 
                 type="phone" 
                 class="cart-form__phone"
                 placeholder="Телефон"
                 v-model="userPhone"
                 ref="phone"
-                v-maska="['+# ### ### ## ##', '+### ### ## ## ##']"
+                v-maska="'+# ### ### ## ##'"
             >
-            <div class="cart-form__error" v-if="!$v.user.phone.required && !$v.user.phone.validatePhone && $v.user.phone.$dirty">
-                <span> Введите номер телефона </span>
-            </div>
+            <!-- <div class="cart-form__error" v-if="!$v.user.phone.required && $v.user.phone.validatePhone && $v.user.phone.$dirty">
+                <span>Введите телефон</span>
+            </div> -->
             <input 
                 type="text" 
                 class="cart-form__address"
@@ -30,14 +30,18 @@
                 v-model="userAddress"
                 ref="address"
             >
-            <div class="cart-form__error" v-if="!$v.user.address.required && $v.user.address.$dirty">
-                <span> Введите адрес </span>
-            </div>
+            <!-- <div class="cart-form__error" v-if="!$v.user.address.required && $v.user.address.$dirty">
+                <span>Введите адрес</span>
+            </div> -->
         </div>
         <div class="cart-form__submit">
             <CartBtn type="submit" class="cart-form__btn">
                 Отправить
             </CartBtn>
+        </div>
+        <div class="cart-form__error" v-if="$v.user.$anyError">
+            <p>Все поля обязательные.</p>
+            <p>После удачной отправки формы содержимое корзины очистится</p>
         </div>
     </form>
 </template>
@@ -47,7 +51,6 @@ import {mapActions, mapGetters} from 'vuex'
 import { required } from 'vuelidate/lib/validators'
 import { maska } from 'maska'
 import CartBtn from '@/components/cart/CartBtn'
-// const validatePhone = phone => phone.match(/\+7\(\d{3}\)\d{3}-\d{2}-\d{2}/)
 export default {
     name: 'FormOrder',
     components: {
@@ -59,13 +62,14 @@ export default {
             name: '',
             phone: '',
             address: ''
-        }
+        },
+        // successValid: false
     }),
 
     validations: {
         user: {
             name: {required},
-            phone: {required, validatePhone: val => val.match(/\+7\(\d{3}\)\d{3}-\d{2}-\d{2}/)},
+            phone: {required, validatePhone: val => !val.match(/\+7 \d{3} \d{3} \d{2} \d{2}/)},
             address: {required}
         }
     },
@@ -112,8 +116,10 @@ export default {
             clearCart: 'cart/clearCart'
         }),
         submitHandler() {
-            if (this.$v.user.$invalid) {
+            console.log(this.$v.user.phone.validatePhone);
+            if (this.$v.user.$invalid && this.$v.user.phone.validatePhone) {
                 this.$v.$touch()
+                // this.successValid=true
                 return
             }
             const userData = {
@@ -155,6 +161,7 @@ export default {
         display: block
         width: 100%
     &__error
-        color: $red
+        margin-top: 32px
+
 
 </style>
