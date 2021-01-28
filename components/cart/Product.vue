@@ -18,7 +18,7 @@
         class="cart-product__trash" 
         @click="deleteProuctHandler(product)" 
       >
-        <Trash />
+        <Trash class="cart-product__trash-img" />
       </button>
     </div>
   </div>
@@ -62,46 +62,55 @@ export default {
 
 <style lang="sass">
 .cart-product
-    &__wrapper
-      display: flex
-      position: relative
-      padding: 15px 25px
-      box-shadow: 0px 4px 16px rgba(#000, 0.05)
-      border-radius: 8px
-      background-color: #fff
-    &__image-handler
-      width: 70px
-      margin: 0 auto
-    &__image-wrap
-      width: 100%
-      padding-bottom: 126.7%
-      position: relative
-    &__image
-      @include absolute($top: 0, $left: 0)
-      width: 100%
-      height: 100%
-    &__body
-      flex-grow: 1
-      max-width: 170px
-    &__title
-      margin: 16px 0 6px
-      color: $grey
-      font-size: 14px
-    &__price
-      display: block
-      margin-top: 6px
-      font:
-        size: 14px
-        weight: 700
-    &__stars
-      display: flex
-      margin-top: 16px
-      &-img
-        width: 13px
-        height: 13px
-        fill: $yellow
-      &-rating
-        color: $yellow
-        font-size: 10px
+  margin-bottom: 12px
+  &__wrapper
+    display: flex
+    position: relative
+    padding: 15px 25px
+    box-shadow: 0px 4px 16px rgba(#000, 0.05)
+    border-radius: 8px
+    background-color: #fff
+  &__image-handler
+    width: 70px
+    margin: 0 auto
+  &__image-wrap
+    width: 100%
+    padding-bottom: 126.7%
+    position: relative
+  &__image
+    @include absolute($top: 0, $left: 0)
+    width: 100%
+    height: 100%
+  &__body
+    flex-grow: 1
+    max-width: 170px
+  &__title
+    margin: 16px 0 6px
+    color: $grey
+    font-size: 14px
+  &__price
+    display: block
+    margin-top: 6px
+    font:
+      size: 14px
+      weight: 700
+  &__stars
+    display: flex
+    margin-top: 16px
+    &-img
+      width: 13px
+      height: 13px
+      fill: $yellow
+    &-rating
+      color: $yellow
+      font-size: 10px
+  &__trash
+    &-img
+      width: 20px
+      height: 22px
+      fill: $grey-light
+      transition: fill 0.3s ease-in-out
+      &:hover
+        fill: #000
 
 </style>

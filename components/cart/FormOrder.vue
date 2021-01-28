@@ -9,9 +9,6 @@
                 v-model="userName"
                 ref="name"
             >
-            <!-- <div class="cart-form__error" v-if="!$v.user.name.required && $v.user.name.$dirty">
-                <span> Введите имя </span>
-            </div> -->
             <input 
                 type="phone" 
                 class="cart-form__phone"
@@ -20,9 +17,6 @@
                 ref="phone"
                 v-maska="'+# ### ### ## ##'"
             >
-            <!-- <div class="cart-form__error" v-if="!$v.user.phone.required && $v.user.phone.validatePhone && $v.user.phone.$dirty">
-                <span>Введите телефон</span>
-            </div> -->
             <input 
                 type="text" 
                 class="cart-form__address"
@@ -30,9 +24,6 @@
                 v-model="userAddress"
                 ref="address"
             >
-            <!-- <div class="cart-form__error" v-if="!$v.user.address.required && $v.user.address.$dirty">
-                <span>Введите адрес</span>
-            </div> -->
         </div>
         <div class="cart-form__submit">
             <CartBtn type="submit" class="cart-form__btn">
@@ -63,13 +54,12 @@ export default {
             phone: '',
             address: ''
         },
-        // successValid: false
     }),
 
     validations: {
         user: {
             name: {required},
-            phone: {required, validatePhone: val => !val.match(/\+7 \d{3} \d{3} \d{2} \d{2}/)},
+            phone: {required, validatePhone: val => !!val.match(/\+7\s\d{3}\s\d{3}\s\d{2}\s\d{2}/)},
             address: {required}
         }
     },
@@ -116,10 +106,8 @@ export default {
             clearCart: 'cart/clearCart'
         }),
         submitHandler() {
-            console.log(this.$v.user.phone.validatePhone);
-            if (this.$v.user.$invalid && this.$v.user.phone.validatePhone) {
+            if (this.$v.user.$invalid) {
                 this.$v.$touch()
-                // this.successValid=true
                 return
             }
             const userData = {

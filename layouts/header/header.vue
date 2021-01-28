@@ -6,7 +6,9 @@
       </NuxtLink>
       <button class="header__cart" @click="openCart">
         <CartIcon class="header__cart-img"/>
-        <span class="header__cart-count">{{cart.length}}</span>
+        <div class="header__cart-count-wrapper">
+          <span class="header__cart-count">{{cart.length}}</span>
+        </div>
       </button>
     </div>
   </header>
@@ -52,13 +54,16 @@ export default {
       width: 26px
       height: 26px
       fill: #000
-    &-count
+    &-count-wrapper
       @include absolute($right: -5px, $top: -5px)
       width: 12px
       height: 12px
-      font-size: 8px
-      color: #fff
       border-radius: 50%
       background-color: #959DAD
+    &-count
+      @include absolute($right: 4px, $top: 1px)
+      font-size: 8px
+      color: #fff
+      
       text-align: center
 </style>
